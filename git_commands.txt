@@ -1,0 +1,132 @@
+Git Commands Used - SDP Assignment 2
+Repository: https://github.com/kishlayamishra02/sdp-sga-2
+====================================================================
+
+STEP 1: LOCAL REPOSITORY SETUP
+--------------------------------------------------------------------
+git init -b main
+  Creates a new empty Git repository in the current folder and names
+  the first branch "main".
+
+git status
+  Shows the current branch and which files are untracked, modified
+  or staged.
+
+STEP 2: GIT WORKFLOW
+--------------------------------------------------------------------
+git add index.html about.html
+  Stages the two HTML files so they are included in the next commit.
+
+git commit -m "Initial commit: add index.html and about.html"
+  Saves the staged files as the first snapshot of the project.
+
+git diff
+  Shows line-by-line changes in tracked files that are not staged yet.
+
+git add index.html
+  Stages the modified index.html.
+
+git commit -m "Update index.html: add project overview section"
+  Records the change to index.html as the second commit.
+
+git branch feature
+  Creates a new branch called "feature" from the current commit.
+
+git branch
+  Lists all local branches. The * marks the current branch.
+
+git checkout feature
+  Switches the working directory to the "feature" branch.
+
+git add about.html
+  Stages the change made to about.html on the feature branch.
+
+git commit -m "Add footer with author details to about.html"
+  Commits the about.html change on the feature branch only.
+
+git checkout main
+  Switches back to the main branch.
+
+git merge --no-ff feature -m "Merge branch 'feature' into main"
+  Merges the feature branch into main. --no-ff forces a merge commit so
+  the branch activity stays visible in the history.
+
+git log --oneline --graph --all
+  Shows all commits on all branches, one line each, with a graph of
+  where branches split and merged.
+
+git log --stat
+  Shows full commit details (author, date, message) and the files
+  changed in each commit.
+
+STEP 3: .GITIGNORE
+--------------------------------------------------------------------
+git status --short
+  Short version of git status. Used before and after creating
+  .gitignore to show that debug.log and temp/ stop being tracked.
+
+git check-ignore -v debug.log temp/notes.txt
+  Confirms that the files are ignored and shows which line of
+  .gitignore matches each one.
+
+git add .gitignore
+  Stages the new .gitignore file.
+
+git commit -m "Add .gitignore to ignore .log files and temp folder"
+  Commits the .gitignore file to the repository.
+
+STEP 4: UNDO OPERATION
+--------------------------------------------------------------------
+git add contact.html
+  Stages a new contact.html page for the additional commit.
+
+git commit -m "Add contact.html page"
+  The additional commit that is undone in the next step.
+
+git log --oneline -3
+  Shows the last 3 commits in short form.
+
+git revert HEAD --no-edit
+  Undoes the last commit by creating a new commit that reverses its
+  changes. History is kept, so the undo is also visible on GitHub.
+  --no-edit uses the default commit message.
+
+git show --stat HEAD
+  Shows details of the latest commit (the revert) and which files it
+  changed.
+
+STEP 5: GITHUB INTEGRATION
+--------------------------------------------------------------------
+git remote add origin https://github.com/kishlayamishra02/sdp-sga-2.git
+  Links the local repository to the empty public GitHub repository
+  under the name "origin".
+
+git remote -v
+  Lists the remote URLs used for fetch and push.
+
+git push -u origin main
+  Uploads the main branch to GitHub. -u sets origin/main as the
+  upstream so later pushes only need "git push".
+
+git push -u origin feature
+  Uploads the feature branch to GitHub so the branch is visible there.
+
+git branch -vv
+  Shows each local branch with its last commit and the remote branch
+  it tracks.
+
+git ls-remote origin
+  Lists the branches and commit IDs stored on GitHub, used to confirm
+  the push worked.
+
+git push
+  Pushes new commits on main to GitHub (used after Step 4 and for the
+  final push).
+
+STEP 6: COMMAND DOCUMENTATION
+--------------------------------------------------------------------
+git add git_commands.txt
+  Stages this documentation file.
+
+git commit -m "Add git_commands.txt with all commands used"
+  Commits this file to the repository.
